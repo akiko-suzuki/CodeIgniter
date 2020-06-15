@@ -30,7 +30,8 @@ public function set_news()
 
     // URL ヘルパーの url_title() メソッドを使い、スペースを - に、大文字を小文字に置換する。
     // input ライブラリの post() メソッドを使い、データを取得する。
-    $slug = url_title($this->input->post('title'), 'dash', TRUE);
+    // 組み込み関数 urlencode() を使うことで、日本語等マルチバイト文字の入力にも対応する。
+    $slug = urlencode(url_title($this->input->post('title'), '-', TRUE));
 
     $data = array(
         'title' => $this->input->post('title'),
